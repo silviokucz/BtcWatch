@@ -9,18 +9,19 @@ import {AboutComponent} from "../UI/about.component";
     <import-export></import-export>
 
     <popup-menu (onAbout)="onAbout()" (onImportExport)="onImportExport()"></popup-menu>
+    <br>
 
     <about></about>
-
-    <p>
-      <ticker></ticker>
-    </p>
-
+    
     <br>
 
     <crypto-watch></crypto-watch>
 
     <br>
+
+    <p>
+      <ticker></ticker>
+    </p>
 
     <log-view></log-view>
   `,
