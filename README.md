@@ -8,7 +8,7 @@ https://cold-storage-crypto-watch.firebaseapp.com/
 Cold Storage Crypto Watch is an application that helps you keep track of your crypto currency holdings and alerts when there is a change in balance.
 Cold Storage Crypto Watch constantly updates the dollar value of your holdings and calculates subtotal per coin and the total amount.
 
-**BtcWatch _always_ respects your privacy**:
+**BtcWatch _always_ respects your privacy**:<br>
 All information regarding the accounts live only in the local browser storage and is never uploaded to the cloud.
 
 Open source at https://github.com/silviokucz/BtcWatch
