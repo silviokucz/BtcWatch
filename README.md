@@ -11,11 +11,11 @@ All information regarding the accounts live only in the local browser storage an
 
 Open source at https://github.com/silviokucz/BtcWatch
 
-Sources of information:
-Ticker: https://coinmarketcap.com/
-BTC: https://blockchain.info/
-ETH, LTC and DASH: https://www.blockcypher.com/
-BCH: https://blockdozer.com/insight/
+Sources of information (APIs):
+- Ticker: https://coinmarketcap.com/
+- BTC: https://blockchain.info/
+- ETH, LTC and DASH: https://www.blockcypher.com/
+- BCH: https://blockdozer.com/insight/
 
 
 Cold Storage Crypto Watch v1.0.0-beta, Copyright &copy;2017 Silvio Kuczynski 
