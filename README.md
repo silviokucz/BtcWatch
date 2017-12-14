@@ -1,8 +1,6 @@
 # BtcWatch
-
-Click [here](https://cold-storage-crypto-watch.firebaseapp.com/) to visit the website.
-
-https://cold-storage-crypto-watch.firebaseapp.com/
+#### by Silvio Kuczynski
+Click [here](https://cold-storage-crypto-watch.firebaseapp.com/) to visit the website or copy and paste the following URL into your browser: https://cold-storage-crypto-watch.firebaseapp.com/
 
 ### About
 Cold Storage Crypto Watch is an application that helps you keep track of your crypto currency holdings and alerts when there is a change in balance.
@@ -25,9 +23,7 @@ Copyright &copy;2017 Silvio Kuczynski
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+You may obtain a copy of the License at [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
