@@ -1,6 +1,7 @@
 import {Component, ViewChild} from "@angular/core";
 import {ImportExportComponent} from "../UI/importExport.component";
 import {AboutComponent} from "../UI/about.component";
+import {FootnoteComponent} from "../UI/footnote.component";
 
 @Component({
   selector: 'app-watchpage',
@@ -12,7 +13,7 @@ import {AboutComponent} from "../UI/about.component";
     <br>
 
     <about></about>
-    
+
     <br>
 
     <crypto-watch></crypto-watch>
@@ -24,6 +25,11 @@ import {AboutComponent} from "../UI/about.component";
     </p>
 
     <log-view></log-view>
+
+    <br>
+    <hr>
+    <br>
+    <footnote></footnote>
   `,
   styles: []
 })
