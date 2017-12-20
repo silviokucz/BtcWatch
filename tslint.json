@@ -70,12 +70,12 @@
     ],
     "prefer-const": true,
     "quotemark": [
-      true,
+      false,
       "single"
     ],
     "radix": true,
     "semicolon": [
-      "always"
+      "never"
     ],
     "triple-equals": [
       true,

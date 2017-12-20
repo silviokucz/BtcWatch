@@ -108,14 +108,28 @@ export class BlockChainService {
     // todo: check if address is valid
 
     let cryptosData = new CryptoData()
-    cryptosData.address = address
+
+    // parse address if manual mode
+    if (address.startsWith('manual')) {
+      const s: string = address.substr('manual:'.length)
+      const balance: number = Number(s)
+      if (isNaN(balance)) {
+        alert("error parsing manual mode")
+        return
+      }
+      cryptosData.address = 'manual'
+      cryptosData.balance = balance
+    } else {
+      cryptosData.address = address
+      cryptosData.balance = 0
+    }
+
     cryptosData.accountName = accountName
     cryptosData.coinType = coinType
-    cryptosData.balance = 0
     cryptosData.dollarValue = 0
 
     // using the spread operator to create a new array so primeng datatable updates
-    //let index = this._blockChainService.cryptoDataList.push(cryptosData) - 1
+    // let index = this._blockChainService.cryptoDataList.push(cryptosData) - 1
     this.cryptoDataList = [...this.cryptoDataList, cryptosData]
 
     this.storeCryptoDataList()
@@ -128,6 +142,11 @@ export class BlockChainService {
 
 
   private getBalance(cryptoData: CryptoData) {
+    // skip if in manual mode
+    if (cryptoData.address === 'manual') {
+      this._logService.logInfo(`${cryptoData.accountName} in manual mode`)
+      return
+    }
 
     // decode url based on coin type
     let url = ''
@@ -214,7 +233,12 @@ export class BlockChainService {
 
           this._localStorageService.storeMap('cryptoList', this.cryptoList)
 
-          //todo update all dollar values
+          // update all dollar values
+          this.cryptoDataList.forEach((cryptoData) => {
+            cryptoData.dollarValue = cryptoData.balance * this.cryptoList.get(cryptoData.coinType).dollarValue
+          })
+
+
         },
         (error: any) => {
           this._logService.logError('Error getting ticker)//: ' + error)
