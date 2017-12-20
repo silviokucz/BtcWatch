@@ -195,7 +195,8 @@ export class BlockChainService {
           this.storeCryptoDataList()
         },
         (error) => {
-          this._logService.logError('Error getting data for account ' + cryptoData.accountName + ' address ' + cryptoData.address)// + ': ' + error)
+          this._logService.logError('Error getting data for ' +
+            cryptoData.coinType + ' <b>account ' + cryptoData.accountName + '</b> address ' + cryptoData.address)// + ': ' + error)
         })
 
   }
@@ -217,7 +218,7 @@ export class BlockChainService {
           //todo update all dollar values
         },
         (error: any) => {
-          this._logService.logError('Error getting ticker)//: ' + error)
+          this._logService.logError('Error getting ticker') // : ' + error)
         })
   }
 

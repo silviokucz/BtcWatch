@@ -18,13 +18,15 @@ import {OverlayPanelModule} from "primeng/components/overlaypanel/overlaypanel";
 import {DropdownModule} from "primeng/components/dropdown/dropdown";
 import {LogService} from "./service/log.service";
 import {PopupMenuComponent} from "./UI/popup-menu.component";
+import {FootnoteComponent} from "./UI/footnote.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     WatchpageComponent,
     CryptoWatchComponent,
-    PopupMenuComponent
+    PopupMenuComponent,
+    FootnoteComponent
   ],
   imports: [
     BrowserModule,
