@@ -33,6 +33,9 @@ export class BlockChainService {
     tempcryptoList.set('bitcoin-cash', new Crypto('bitcoin-cash', 'Bcash'))
     tempcryptoList.set('litecoin', new Crypto('litecoin', 'LiteCoin'))
     tempcryptoList.set('dash', new Crypto('dash', 'Dash'))
+    tempcryptoList.set('monero', new Crypto('monero', 'Monero'))
+    tempcryptoList.set('ripple', new Crypto('ripple', 'Ripple'))
+    tempcryptoList.set('ethereum-classic', new Crypto('ethereum-classic', 'Ethereum Classic'))
     this.cryptoList = this._localStorageService.retrieveMap('cryptoList')
     if (!this.cryptoList || this.cryptoList.size !== tempcryptoList.size) {
       this.cryptoList = tempcryptoList
@@ -104,9 +107,6 @@ export class BlockChainService {
 
   public addToCryptoDataList(address: string, accountName: string, coinType: string) {
 
-    //todo: check if address already in list
-    // todo: check if address is valid
-
     let cryptosData = new CryptoData()
 
     // parse address if manual mode
@@ -144,18 +144,21 @@ export class BlockChainService {
   private getBalance(cryptoData: CryptoData) {
     // skip if in manual mode
     if (cryptoData.address === 'manual') {
-      this._logService.logInfo(`${cryptoData.accountName} in manual mode`)
       return
     }
 
     // decode url based on coin type
     let url = ''
     switch (cryptoData.coinType) {
+      // todo: add monero, ripple
       case 'bitcoin':
         url = `https://blockchain.info/q/addressbalance/${cryptoData.address}?cors=true`
         break
       case 'ethereum':
         url = `https://api.blockcypher.com/v1/eth/main/addrs/${cryptoData.address}/balance`
+        break
+      case 'ethereum-classic':
+        url = `https://etcchain.com/api/v1/getAddressBalance?address=${cryptoData.address}`
         break
       case 'litecoin':
         url = `https://api.blockcypher.com/v1/ltc/main/addrs/${cryptoData.address}/balance`
@@ -174,6 +177,8 @@ export class BlockChainService {
           // decode the response based on coin type
           let newBalance = 0
           switch (cryptoData.coinType) {
+            // todo: add monero, ripple
+
             case 'bitcoin':
               let satoshi: number = res._body
               newBalance = satoshi / 100000000
@@ -181,6 +186,11 @@ export class BlockChainService {
             case 'ethereum':
               let resJson: string = res._body
               let resObj = JSON.parse(resJson)
+              newBalance = resObj.balance / 1000000000000000000
+              break
+            case 'ethereum-classic':
+              resJson = res._body
+              resObj = JSON.parse(resJson)
               newBalance = resObj.balance / 1000000000000000000
               break
             case 'litecoin':
