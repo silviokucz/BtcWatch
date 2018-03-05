@@ -36,6 +36,7 @@ export class BlockChainService {
     tempcryptoList.set('monero', new Crypto('monero', 'Monero'))
     tempcryptoList.set('ripple', new Crypto('ripple', 'Ripple'))
     tempcryptoList.set('ethereum-classic', new Crypto('ethereum-classic', 'Ethereum Classic'))
+    tempcryptoList.set('zcash', new Crypto('zcash', 'ZCash'))
     this.cryptoList = this._localStorageService.retrieveMap('cryptoList')
     if (!this.cryptoList || this.cryptoList.size !== tempcryptoList.size) {
       this.cryptoList = tempcryptoList
@@ -150,7 +151,7 @@ export class BlockChainService {
     // decode url based on coin type
     let url = ''
     switch (cryptoData.coinType) {
-      // todo: add monero, ripple
+      // todo: add monero, ripple, zcash
       case 'bitcoin':
         url = `https://blockchain.info/q/addressbalance/${cryptoData.address}?cors=true`
         break
@@ -177,7 +178,7 @@ export class BlockChainService {
           // decode the response based on coin type
           let newBalance = 0
           switch (cryptoData.coinType) {
-            // todo: add monero, ripple
+            // todo: add monero, ripple, zcash
 
             case 'bitcoin':
               let satoshi: number = res._body
@@ -232,7 +233,7 @@ export class BlockChainService {
 
 
   private updateTicker() {
-    this._http.get('https://api.coinmarketcap.com/v1/ticker/?limit=20')
+    this._http.get('https://api.coinmarketcap.com/v1/ticker/?limit=30')
       .subscribe((res: any) => {
           let data = JSON.parse(res._body)
           data.forEach((entry) => {

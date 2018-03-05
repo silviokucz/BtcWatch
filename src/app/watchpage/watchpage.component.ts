@@ -6,7 +6,7 @@ import {FootnoteComponent} from "../UI/footnote.component";
 @Component({
   selector: 'app-watchpage',
   template: `
-
+    <!--<div style="width: 1000px">-->
     <import-export></import-export>
 
     <popup-menu (onAbout)="onAbout()" (onImportExport)="onImportExport()"></popup-menu>
@@ -30,6 +30,8 @@ import {FootnoteComponent} from "../UI/footnote.component";
     <hr>
     <br>
     <footnote></footnote>
+
+    <!--</div>-->
   `,
   styles: []
 })

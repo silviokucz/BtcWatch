@@ -1,5 +1,6 @@
-<p-dialog header="About Cold Storage Crypto Watch" [(visible)]="_show"
-          (onHide)="close()" modal="modal" width="900" [responsive]="true">
+<p-dialog header="About Cold Storage Crypto Watch" [(visible)]="_show" appendTo="body" [contentStyle]="{'overflow':'scroll'}"
+          (onHide)="close()" modal="modal" [responsive]="true" dismissableMask="true"
+          positionLeft="10" positionTop="10">
   <br/>
   Cold Storage Crypto Watch is an application that helps you keep track of your crypto currency holdings
   and alerts when there is a change in balance.

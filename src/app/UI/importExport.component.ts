@@ -5,17 +5,20 @@ import {BlockChainService} from "../service/block-chain.service";
   {
     selector: 'import-export',
     template: `
-      <p-dialog header="Import Export list" [(visible)]="_show"
-                (onHide)="close()" modal="modal" width="900" [responsive]="true">
+      <p-dialog header="Import Export list" [(visible)]="_show" appendTo="body" [contentStyle]="{'overflow':'auto'}"
+                (onHide)="close()" modal="modal" [responsive]="true" dismissableMask="true"
+                positionLeft="10" positionTop="10">
+        <div>
         <br/>
         All information regarding the accounts live only in the local browser storage and is never uploaded to the
         cloud.
         <br/>
         <br/>
 
+          
         <p-accordion>
           <p-accordionTab header="Export">
-            <p-panel>
+              <p-panel>
               <p-header>
                 To Export the list, highlight all the text shown and copy to the clipboard and then save it to a file
                 using your favorite text editor for example notepad:
@@ -36,10 +39,11 @@ import {BlockChainService} from "../service/block-chain.service";
                 <button pButton icon="fa-check" iconPos="left" (click)="importList()" label="Import"></button>
               </p-footer>
             </p-panel>
+            
          </p-accordionTab>
 
         </p-accordion>
-
+        </div>
       </p-dialog>
     `,
     styles: []

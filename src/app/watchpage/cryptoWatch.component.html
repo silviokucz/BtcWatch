@@ -1,12 +1,9 @@
-
-
-
-
-<div class="ui-inputgroup">
+<div style="width: 100%">
+  <!--<div class="ui-inputgroup">-->
 
 
   <p-dropdown [options]="_cryptoOptions" [(ngModel)]="_selectedCrypto" placeholder="Select Coin"
-              [style]="{'width':'200px'}">
+              [style]="{'width':'170px'}">
     <ng-template let-coin pTemplate="item">
       <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
         <img src="../../assets/icons/{{coin.value}}.png" style="width:24px;position:absolute;top:1px;left:5px"/>
@@ -18,84 +15,91 @@
   &nbsp;
 
   <span class="ui-inputgroup-addon"><i class="fa fa-bank"></i></span>
-  <input type="text" [(ngModel)]="_accountNameInput" pInputText placeholder="Enter Account Name">&nbsp;&nbsp;&nbsp;
+  <input type="text" [(ngModel)]="_accountNameInput" pInputText placeholder="Enter Account Name" style="width: 170px">&nbsp;&nbsp;&nbsp;
   <span class="ui-inputgroup-addon"><i class="fa fa-at"></i></span>
-  <input type="text" [(ngModel)]="_addressInput" pInputText placeholder="Enter Address (public key) or manual:[balance]" style="width: 400px">&nbsp;&nbsp;
+  <input type="text" [(ngModel)]="_addressInput" pInputText placeholder="Enter Address (public key) or manual:[balance]"
+         style="width: 350px">&nbsp;&nbsp;
   <button pButton type="button" icon="fa-plus-square-o" iconPos="left" (click)="onAddAddress()"
           [disabled]="!(_selectedCrypto && _accountNameInput && _addressInput)"></button>
+  <!--</div>-->
+  <br>
+  <br>
 </div>
-<br>
+
+<div style="width: 100%">
+  <p-dataTable [value]="_blockChainService.cryptoDataList" resizableColumns="false" rowGroupMode="subheader"
+               groupField="coinType" sortField="coinType" >
 
 
-<p-dataTable [value]="_blockChainService.cryptoDataList" resizableColumns="true" rowGroupMode="subheader" groupField="coinType"
-             [sortableRowGroup]="true" sortField="coinType">
-
-
-  <ng-template pTemplate="rowgroupfooter" let-btcAddress>
-    <td colspan="2" style="text-align:right;color: saddlebrown">
-      <img src="../../assets/icons/{{btcAddress.coinType}}.png" style="width:20px; "/>
-      {{btcAddress.coinType}} Subtotal:
-    </td>
-    <td style="color: saddlebrown">{{ calculateSubtotalBallance(btcAddress.coinType)}}</td>
-    <td style="color: saddlebrown">{{calculateSubtotalDollarValue(btcAddress.coinType) | currency:'USD':true }}</td>
-  </ng-template>
-<br>
-<log-view></log-view>
-
-  <p-column data-field="coinType" header="Coin Type" [sortable]="true" [style]="{width: '120px'}">
-    <ng-template let-col let-btcAddress="rowData" pTemplate="body">
-      <img src="../../assets/icons/{{btcAddress.coinType}}.png" style="width:20px; "/>
-
-      <div style="font-size:14px;float:right;margin:4px 20px 0 0;color:#999999">{{btcAddress.coinType}}</div>
+    <ng-template pTemplate="rowgroupfooter" let-btcAddress>
+      <td colspan="2" style="text-align:right;color: saddlebrown">
+        <img src="../../assets/icons/{{btcAddress.coinType}}.png" style="width:20px; "/>
+        {{btcAddress.coinType}} Subtotal:
+      </td>
+      <td style="color: saddlebrown">{{ calculateSubtotalBallance(btcAddress.coinType)}}</td>
+      <td style="color: saddlebrown">{{calculateSubtotalDollarValue(btcAddress.coinType) | currency:'USD':true }}</td>
     </ng-template>
-  </p-column>
+    <br>
+    <log-view></log-view>
 
-  <p-column field="accountName" header="Account Name"></p-column>
+    <p-column data-field="coinType" header="Coin Type" [sortable]="false" [style]="{width: '120px'}">
+      <ng-template let-col let-btcAddress="rowData" pTemplate="body">
+        <img src="../../assets/icons/{{btcAddress.coinType}}.png" style="width:20px; "/>
 
-  <p-column field="balance" header="Balance"></p-column>
+        <div style="font-size:14px;float:right;margin:4px 20px 0 0;color:#999999">{{btcAddress.coinType}}</div>
+      </ng-template>
+    </p-column>
 
-  <p-column data-field="dollarValue" header="$ Value">
-    <ng-template let-col let-btcAddress="rowData" pTemplate="body">
-      {{btcAddress.dollarValue | currency: 'USD' : true}}
-    </ng-template>
-  </p-column>
-Import Export list
-  <p-column data-field="address" header="Address" [style]="{width: '100px'}">
-    <ng-template let-col let-btcAddress="rowData" pTemplate="body">
+    <p-column field="accountName" header="Account Name" [style]="{width: '150px'}"></p-column>
+
+    <p-column field="balance" header="Balance" [style]="{width: '120px'}"></p-column>
+
+    <p-column data-field="dollarValue" header="$ Value" [style]="{width: '120px'}">
+      <ng-template let-col let-btcAddress="rowData" pTemplate="body">
+        {{btcAddress.dollarValue | currency: 'USD' : true}}
+      </ng-template>
+    </p-column>
+    Import Export list
+    <p-column data-field="address" header="Address" [style]="{width: '100px'}">
+      <ng-template let-col let-btcAddress="rowData" pTemplate="body">
       <span (mouseenter)="setTooltipAddress(btcAddress.address); op1.show($event)"
             (mouseleave)="op1.hide()">{{btcAddress.address | first3EllpsisLast3Pipe}}</span>
-    </ng-template>
-  </p-column>
+      </ng-template>
+    </p-column>
 
 
-  <p-column data-field="lastUpdate" header="Last Update">
-    <ng-template let-col let-btcAddress="rowData" pTemplate="body">
-      {{btcAddress.lastUpdate | date: 'short' }}
-    </ng-template>
-  </p-column>
+    <p-column data-field="lastUpdate" header="Last Update" [style]="{width: '150px'}">
+      <ng-template let-col let-btcAddress="rowData" pTemplate="body">
+        {{btcAddress.lastUpdate | date: 'short' }}
+      </ng-template>
+    </p-column>
 
-  <p-column header="Remove" [style]="{width: '70px', 'text-align': 'center'}">
-    <ng-template let-btcAddress="rowData" let-i="rowIndex" pTemplate="body">
-      <button pButton icon="fa-remove" iconPos="left" (click)="removeAddress(btcAddress)" style="color: red;"></button>
-    </ng-template>
-  </p-column>
+    <p-column header="Remove" [style]="{width: '70px', 'text-align': 'center'}">
+      <ng-template let-btcAddress="rowData" let-i="rowIndex" pTemplate="body">
+        <button pButton icon="fa-remove" iconPos="left" (click)="removeAddress(btcAddress)"
+                style="color: red;"></button>
+      </ng-template>
+    </p-column>
 
-  <p-footerColumnGroup>
-    <p-row>
-      <p-column colspan="3">
-        <ng-template pTemplate="footer">
-          <span style="float: right; color:darkgreen;font-weight: inherit">Total:</span>
-        </ng-template>
-      </p-column>
-      <p-column footer="">
-        <ng-template pTemplate="footer">
-          <span style="float: left; color:darkgreen;font-weight: inherit">{{calculateTotals() | currency:'USD':true }}</span>
-        </ng-template>
-      </p-column>
-    </p-row>
-  </p-footerColumnGroup>
+    <p-footerColumnGroup>
+      <p-row>
+        <p-column colspan="3">
+          <ng-template pTemplate="footer">
+            <span style="float: right; color:darkgreen;font-weight: inherit">Total:</span>
+          </ng-template>
+        </p-column>
+        <p-column footer="">
+          <ng-template pTemplate="footer">
+            <span
+              style="float: left; color:darkgreen;font-weight: inherit">{{calculateTotals() | currency:'USD':true }}</span>
+          </ng-template>
+        </p-column>
+      </p-row>
+    </p-footerColumnGroup>
 
-</p-dataTable>
+  </p-dataTable>
+
+</div>
 
 <p-overlayPanel #op1>
   {{_tooltipAddress}}
